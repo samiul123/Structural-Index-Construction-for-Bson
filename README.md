@@ -8,7 +8,7 @@ BSON is basically Binary JSON(Javascript Object Notation). It was designed for e
 
 Here are some examples of JSON to BSON conversion.
 
-```json
+```
 Json:
 {
     "number": 5
@@ -20,7 +20,7 @@ Bson:
 0x05 0x00 0x00 0x00                 // value (5) in little-endian format
 0x00                                // null terminator
 ```
-```json
+```
 Json: 
 {
     "bool": true,
@@ -37,7 +37,7 @@ Bson:
 0x6a 0x73 0x6f 0x6e 0x00            // null terminated string value (json)
 0x00                                // null terminator
 ```
-```json
+```
 Json:
 {
     "array": [1, 2, 3]
@@ -61,4 +61,53 @@ Bson:
 0x10 0x32 0x00 0x03 0x00 0x00 0x00  // type (int32) null-terminated key (2) value (3)
 0x00                                // null terminator of inner object
 0x00                                // null terminator of outer object
+```
+```
+Json:
+{
+    "students": [
+        {
+            "name": "student1",
+            "roll": 1
+        },
+        {
+            "name": "student2",
+            "roll": 2
+        }
+    ]
+}
+Bson:
+0x5e 0x00 0x00 0x00                           // length (94)
+
+0x04                                          // type (array)
+0x73 0x74 0x75 0x64 0x65 0x6e 0x74 0x73 0x00  // null terminated key (students)
+0x4f 0x00 0x00 0x00                           // length (79)
+
+0x03                                          // type (document)
+0x30 0x00                                     // null terminated key (0)
+0x22 0x00 0x00 0x00                           // length (34)
+0x02                                          // type (string)
+0x6e 0x61 0x6d 0x65 0x00                      // null terminated key (name)
+0x09 0x00 0x00 0x00                           // length of null-terminated string value (9)
+0x73 0x74 0x75 0x64 0x65 0x74 0x31 0x00       // null-terminated value (student1)
+0x10                                          // type (int32)
+0x72 0x6f 0x6c 0x6c 0x00                      // null terminated key (roll)
+0x01 0x00 0x00 0x00                           // value (1)
+0x00                                          // null-terminator
+
+0x03                                          // type(document)
+0x31 0x00                                     // null terminated key (1)
+0x22 0x00 0x00 0x00                           // length (34)
+0x02                                          // type (string)
+0x6e 0x61 0x6d 0x65 0x00                      // null terminated key (name)
+0x09 0x00 0x00 0x00                           // length of null-terminated string value (9)
+0x73 0x74 0x75 0x64 0x65 0x74 0x32 0x00       // null-terminated value (student2)
+0x10                                          // type (int32)
+0x72 0x6f 0x6c 0x6c 0x00                      // null terminated key (roll)
+0x02 0x00 0x00 0x00                           // value (2)
+0x00                                          // null-terminator
+
+0x00                                          // null-terminator
+
+0x00                                          // null-terminator
 ```
