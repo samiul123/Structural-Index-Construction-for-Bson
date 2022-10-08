@@ -37,3 +37,28 @@ Bson:
 0x6a 0x73 0x6f 0x6e 0x00            // null terminated string value (json)
 0x00                                // null terminator
 ```
+```json
+Json:
+{
+    "array": [1, 2, 3]
+}
+This object will be considered as
+{
+    "array": {
+        "0": 1,
+        "1": 2,
+        "2": 3
+    }
+}
+where the nested keys are considered as the index of the original array
+Bson:
+0x26 0x00 0x00 0x00                 // length (38)
+0x04                                // type (array)
+0x61 0x72 0x72 0x61 0x79 0x00       // null-terminated key (array)
+0x1a 0x00 0x00 0x00                 // length (26)
+0x10 0x30 0x00 0x01 0x00 0x00 0x00  // type (int32) null-terminated key (0) value (1)
+0x10 0x31 0x00 0x02 0x00 0x00 0x00  // type (int32) null-terminated key (1) value (2)
+0x10 0x32 0x00 0x03 0x00 0x00 0x00  // type (int32) null-terminated key (2) value (3)
+0x00                                // null terminator of inner object
+0x00                                // null terminator of outer object
+```
