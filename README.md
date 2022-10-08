@@ -20,3 +20,20 @@ Bson:
 0x05 0x00 0x00 0x00                 // value (5) in little-endian format
 0x00                                // null terminator
 ```
+```json
+Json: 
+{
+    "bool": true,
+    "string": "json"
+}
+Bson:
+0x1d 0x00 0x00 0x00                 // length (29) of the document in little-endian format
+0x08                                // type (boolean) of the value
+0x62 0x6f 0x6f 0x6c 0x00            // null terminated key (bool)
+0x01                                // value (true)
+0x02                                // type (string)
+0x73 0x74 0x72 0x69 0x6e 0x67 0x00  // null terminated key (string)
+0x05 0x00 0x00 0x00                 // length of the null-terminated string value (4+1=5) in little-endian format
+0x6a 0x73 0x6f 0x6e 0x00            // null terminated string value (json)
+0x00                                // null terminator
+```
