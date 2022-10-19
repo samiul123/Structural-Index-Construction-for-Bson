@@ -1,0 +1,9 @@
+{
+    "name": "Sami",
+    "mobile": "123123525",
+    "address": {
+        "house": 34,
+        "road": 3,
+        "sector": 12
+    }
+}
